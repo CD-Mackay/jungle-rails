@@ -1,2 +1,16 @@
-<h1>Admin::Dashboard#show</h1>
-<p>Find me in app/views/admin/dashboard/show.html.erb</p>
+<h1>Admin Dashboard</h1>
+<h3>Details</h3>
+<ul class="list-group">
+  <li class="list-group-item">Products Available: <%= @products.length %> </li>
+  <li class="list-group-item"><%= link_to 'View Products Administration',  [:admin, :products] %></li>
+  <li class="list-group-item">Available Categories: <%= @categories.length %></li>
+  </ul>
+  <ul class="list-group">
+  <h5 class="list-group-item">View Products by Category</h5>
+  <% @categories.each do |cat| %>
+  <li class="list-group-item"><%= link_to cat.name, cat %></li>
+  <% end %>
+</ul>
+
+
+
