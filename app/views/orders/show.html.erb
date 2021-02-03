@@ -9,14 +9,7 @@
      <%= render 'lineitem' %>
     <p>Order Total: <%= humanized_money_with_symbol @order.total_cents %> </p>
     <p>Ordered by: <%= @order.email %> </p>
-  
-
-  
-   
   </div>
-
-
-  
 
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
