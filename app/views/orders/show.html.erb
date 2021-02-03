@@ -8,7 +8,20 @@
     <h4>Thank you for your order!</h4>
     <p>Order Total: <%= humanized_money_with_symbol @order.total_cents %> </p>
     <p>Ordered by: <%= @order.email %> </p>
+    <%= @order.line_items.inspect %>
+
+   <% @order.line_items.each do |item| %>
+    <p>number ordered: <%= item.quantity %></p>
+
+    <p>price per unit: <%= humanized_money_with_symbol item.item_price_cents %></p>
+    <% end %>
+  
+
+  
+    # <%= render 'orderitem' %>
   </div>
+
+  
 
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
