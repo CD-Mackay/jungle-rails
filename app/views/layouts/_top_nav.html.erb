@@ -30,9 +30,14 @@
           </ul>
         </li>
         <% if current_user %>
-          <li>Signed in as <%= current_user.name %> </li> <li><%= link_to "Logout", '/logout' %></li>
+          <li>Signed in as <%= current_user.name %> </li>
+          <li>
+
+          <%= link_to 'Logout', session_path(session[:user_id]), method: :delete %> 
+          </li>
             <% else %>
-          <li> <%= link_to 'Login', '/login' %> </li> <li><%= link_to 'Signup', '/signup' %></li>
+          <li> <%= link_to 'Login', new_session_path %> </li> 
+          <li> <%= link_to 'Signup', new_user_path %> </li>
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
