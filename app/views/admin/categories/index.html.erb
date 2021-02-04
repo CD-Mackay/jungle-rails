@@ -1,0 +1,19 @@
+<h1>Hello Admin Categories</h1>
+
+<%= link_to '+ New Category', [:new, :admin, :category], class: 'btn btn-info' %>
+
+
+<div class="panel panel-default categories">
+<table class="table table-bordered">
+<thead>
+  <tr>
+    <th>Category</th>
+    <th>Category ID</th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+<%= render @categories %>
+</tbody>
+</table>
+</div>
