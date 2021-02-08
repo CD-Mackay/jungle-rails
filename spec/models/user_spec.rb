@@ -20,7 +20,7 @@ RSpec.describe User, type: :model do
     it 'Rejects email addresses already in the database' do
       @user = User.new(first_name:"Nom", last_name: "guy", password: "pass", password_confirmation: "pass", email: "c@g")
       @user.save!
-      @invaliduser = User.new(first_name: "me", last_name: "guy", password: "notapassword", password_confirmation: "notapassword", email: "c@g")
+      @invaliduser = User.new(first_name: "me", last_name: "guy", password: "notapassword", password_confirmation: "notapassword", email: "C@G")
       expect(@invaliduser).to_not be_valid
     end
     it 'Rejects users without a valid email address' do
