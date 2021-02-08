@@ -17,6 +17,12 @@ RSpec.describe User, type: :model do
       expect(@user).to_not be_valid
       expect(@user.errors.full_messages).to include("Password confirmation can't be blank")
     end
+    it 'Rejects users without passwords' do
+      @user = User.new(first_name:"Nom", last_name: "guy", email: "c@g")
+      expect(@user).to_not be_valid
+      expect(@user.errors.full_messages).to include("Password can't be blank")
+    end
+
     it 'Rejects email addresses already in the database' do
       @user = User.new(first_name:"Nom", last_name: "guy", password: "pass", password_confirmation: "pass", email: "c@g")
       @user.save!
