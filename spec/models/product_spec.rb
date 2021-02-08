@@ -20,22 +20,39 @@ RSpec.describe Product, type: :model do
                             description: "descriptive",
                             quantity: 105)
       expect(@product).to_not be_valid;
+      expect(@product.errors.full_messages).to include("Name can't be blank")
   end
 
-    # it 'contains a valid price' do
-    #   @product = Product.new({price_cents: 10000})
-    #   expect(@product.price_cents).to eql(10000)
-    #   expect(@product.name).to be_nil
-    # end
-    # it 'contains a valid quantity' do
-    #   @product = Product.new({quantity: 31})
-    #   expect(@product.quantity).to eql(31)
-    # end
+    it 'Rejects products without a valid price' do
+    @electronics = Category.new
+    @product = Product.new(category: @electronics,
+                          name: "Product",
+                          description: "descriptive",
+                          quantity: 105)
+    expect(@product).to_not be_valid;
+    expect(@product.errors.full_messages).to include("Price can't be blank")
 
-    # it 'is placed in a valid category' do
-    #   @product = Product.new({category_id: 1})
-    #   expect(@product.category_id).to eql(1)
-    
-    # end
+    end
+
+    it 'rejects products without a quantity' do
+    @electronics = Category.new
+      @product = Product.new(category: @electronics,
+                            price_cents: 50,
+                            description: "descriptive",
+                            name: "productname")
+      expect(@product).to_not be_valid;
+      expect(@product.errors.full_messages).to include("Quantity can't be blank")
+
+    end
+
+    it 'rejects products without a category' do
+    @product = Product.new(name: "Product",
+                          price_cents: 50,
+                          description: "descriptive",
+                          quantity: 105)
+    expect(@product).to_not be_valid;
+    expect(@product.errors.full_messages).to include("Category can't be blank")
+
+    end
   end
 end
