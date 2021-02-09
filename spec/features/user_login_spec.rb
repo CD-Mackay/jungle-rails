@@ -21,8 +21,5 @@ RSpec.feature "UserLogins", type: :feature, js: true do
     sleep(1)
     save_screenshot 'after_login.png'
     expect(page).to have_text("Logout")
-
-  end
-
-  
+  end  
 end
