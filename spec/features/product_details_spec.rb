@@ -16,7 +16,7 @@ RSpec.feature "User navigates to ", type: :feature, js: true do
   end
   scenario "The user views the page for the selected product" do
     visit root_path
-    button = page.find('.products').first('#product_name').click
+    page.find('.products').first('#product_name').click
     sleep(1)
     save_screenshot 'product_page.png'
     expect(page).to have_css('.product-detail')

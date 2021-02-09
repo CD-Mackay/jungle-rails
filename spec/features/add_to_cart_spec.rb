@@ -16,6 +16,12 @@ RSpec.feature "Adding products to shopping cart", type: :feature, js: true do
   end
 
   scenario "The user adds an item to the shopping cart" do
+    visit root_path
+    cart = page.find_link('My Cart')
+    page.find('.products').first('.button_to').click
+    sleep(1)
+    save_screenshot 'add-to-cart.png'
+
   end
-  
+
 end
