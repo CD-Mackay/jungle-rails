@@ -17,10 +17,11 @@ RSpec.feature "Adding products to shopping cart", type: :feature, js: true do
 
   scenario "The user adds an item to the shopping cart" do
     visit root_path
-    cart = page.find_link('My Cart')
+    expect(page).to have_text("My Cart (0)")
     page.find('.products').first('.button_to').click
-    sleep(1)
     save_screenshot 'add-to-cart.png'
+    expect(page).to have_text("My Cart (1)")
+
 
   end
 
