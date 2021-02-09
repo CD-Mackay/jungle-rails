@@ -34,5 +34,34 @@ RSpec.describe User, type: :model do
       expect(@user).to_not be_valid
     end
   end
+
+
+
+
+  describe '.authenticate_with_credentials' do
+    it 'returns nil if the user cannot be found' do
+      @user = User.new(first_name:"Nom", last_name: "guy", password: "pass", password_confirmation: "pass", email: "c@g")
+      valid = User.authenticate_with_credentials('c@g', 'pass')
+      expect(valid).to be_nil
+    end
+    it 'should return the user data if the user exists' do
+      @user = User.new(first_name:"Nom", last_name: "guy", password: "pass", password_confirmation: "pass", email: "c@g")
+      @user.save!
+      valid = User.authenticate_with_credentials('c@g', 'pass')
+      expect(valid).to_not be_nil
+    end
+    it 'Should return valid data if the email contains trailing whitespace' do
+      @user = User.new(first_name:"Nom", last_name: "guy", password: "pass", password_confirmation: "pass", email: " c@g ")
+      @user.save!
+      valid = User.authenticate_with_credentials('c@g', 'pass')
+      expect(valid).to_not be_nil
+    end
+    it 'Should authenticate users with incorrectly cased email addresses' do 
+      @user = User.new(first_name:"Nom", last_name: "guy", password: "pass", password_confirmation: "pass", email: " c@G ")
+      @user.save!
+      valid = User.authenticate_with_credentials('c@g', 'pass')
+      expect(valid).to_not be_nil
+    end
+  end
 end
 
