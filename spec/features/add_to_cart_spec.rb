@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "User navigates to ", type: :feature, js: true do
+RSpec.feature "Adding products to shopping cart", type: :feature, js: true do
   before :each do
     @category = Category.create! name: 'Apparel'
 
@@ -14,13 +14,15 @@ RSpec.feature "User navigates to ", type: :feature, js: true do
     )
     end
   end
-  scenario "The user views the page for the selected product" do
-    visit root_path
-    page.find('.products').first('#product_name').click
-    sleep(1)
-    save_screenshot 'product_page.png'
-    expect(page).to have_css('.product-detail')
-  end
 
+  scenario "The user adds an item to the shopping cart" do
+    visit root_path
+    expect(page).to have_text("My Cart (0)")
+    page.find('.products').first('.button_to').click
+    save_screenshot 'add-to-cart.png'
+    expect(page).to have_text("My Cart (1)")
+
+
+  end
 
 end
